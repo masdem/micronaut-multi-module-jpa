@@ -10,14 +10,13 @@ import io.micronaut.security.annotation.Secured
 import jakarta.inject.Inject
 
 @Controller("/roles")
-class RoleRest() {
+class RoleRest(private val service: RoleService) {
 
-    @Inject
-    lateinit var service: RoleService
+
 
     @Get(produces = [MediaType.TEXT_PLAIN])
     @Secured("isAnonymous()")
-    fun index() = "Hello World form role rest"
+    fun index() = service.list()
 
     fun create (role: RoleSaveModel) = service.save(role as Role)
 }

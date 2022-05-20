@@ -1,6 +1,7 @@
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.6.10"
     id("org.jetbrains.kotlin.kapt") version "1.6.10"
+    id("io.micronaut.library") version "3.3.0"
 }
 
 dependencies {

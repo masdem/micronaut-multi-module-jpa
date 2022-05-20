@@ -30,9 +30,9 @@ endpoints:
 
 datasources:
   default:
-    url: "jdbc:postgresql://${DB_HOST:`localhost`}/${DB_NAME}"
-    username: "${DB_USER}"
-    password: "${DB_PASSWORD}"
+    url: "jdbc:postgresql://${DB_HOST:`localhost`}/${DB_NAME:`test2`}"
+    username: "${DB_USER:`logineo`}"
+    password: "${DB_PASSWORD:`logineopg`}"
     driverClassName: 'org.postgresql.Driver'
     maxLifetime: 3600000 #60 minutes
     maximumPoolSize: 20
@@ -42,15 +42,14 @@ datasources:
 jpa:
   default:
     entity-scan:
-      classpath: true
+#      classpath: true
       packages:
         - 'com.logineo.core'
     properties:
       hibernate:
-        physical_naming_strategy: 'com.vladmihalcea.hibernate.type.util.CamelCaseToSnakeCaseNamingStrategy'
         hbm2ddl:
-          auto: validate
-        show_sql: false
+          auto: update
+      show_sql: true
 
 netty:
   default:

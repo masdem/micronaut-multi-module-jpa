@@ -17,6 +17,6 @@ class MainRest(private val service: UserService) {
     @Secured("isAnonymous()")
     fun index() = "Hello World"
 
-    @Post
-    fun create(user: UserSaveModel) = service.save(user as User)
+//    @Post
+//    fun create(user: UserSaveModel) = service.save(user as User)
 }

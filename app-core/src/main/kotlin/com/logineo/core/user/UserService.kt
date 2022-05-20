@@ -9,13 +9,13 @@ import javax.transaction.Transactional
 @Singleton
 open class UserService (private val userRepo: UserRepo) {
 
-    @Transactional
-    fun save(user: User): User {
-        if(user.id == null && !user.password.isNullOrBlank()){
-            val passwordHashed: String = BCrypt.hashpw(user.password, BCrypt.gensalt(12))
-            user.password = passwordHashed
-        }
-        return userRepo.save(user)
-    }
+//    @Transactional
+//    fun save(user: User): User {
+//        if(user.id == null && !user.password.isNullOrBlank()){
+//            val passwordHashed: String = BCrypt.hashpw(user.password, BCrypt.gensalt(12))
+//            user.password = passwordHashed
+//        }
+//        return userRepo.save(user)
+//    }
 
 }
