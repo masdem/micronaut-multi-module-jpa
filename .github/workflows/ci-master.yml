@@ -1,0 +1,19 @@
+
+name: pipeline-master
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  push_to_registry:
+    name: Release docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and Publish head Docker image
+        uses: VaultVulp/gp-docker-action@1.1.7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
+          image-name: vitepay-apis
+          extract-git-tag: true
+

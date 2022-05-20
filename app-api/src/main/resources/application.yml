@@ -1,0 +1,58 @@
+micronaut:
+  application:
+    name: template-apis
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+
+  server:
+    #    host: 192.168.2.39
+    port: 8081
+    cors:
+      enabled: true
+  router:
+    static-resources:
+      default:
+        enabled: true
+        mapping: "/**"
+        paths: "classpath:public"
+
+endpoints:
+  health:
+    enabled: true
+    sensitive: false
+    details-visible: ANONYMOUS
+
+datasources:
+  default:
+    url: "jdbc:postgresql://${DB_HOST:`localhost`}/${DB_NAME}"
+    username: "${DB_USER}"
+    password: "${DB_PASSWORD}"
+    driverClassName: 'org.postgresql.Driver'
+    maxLifetime: 3600000 #60 minutes
+    maximumPoolSize: 20
+    minimumIdle: 5
+
+
+jpa:
+  default:
+    entity-scan:
+      classpath: true
+      packages:
+        - 'com.logineo.core'
+    properties:
+      hibernate:
+        physical_naming_strategy: 'com.vladmihalcea.hibernate.type.util.CamelCaseToSnakeCaseNamingStrategy'
+        hbm2ddl:
+          auto: validate
+        show_sql: false
+
+netty:
+  default:
+    allocator:
+      max-order: 3

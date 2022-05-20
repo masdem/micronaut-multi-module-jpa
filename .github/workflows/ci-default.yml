@@ -1,0 +1,16 @@
+name: pipeline-default
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: gradle:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build project
+        run: |
+          gradle classes

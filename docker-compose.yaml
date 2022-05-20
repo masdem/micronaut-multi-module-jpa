@@ -1,0 +1,13 @@
+version: '3'
+services:
+    vp-rabbit:
+        image: heidiks/rabbitmq-delayed-message-exchange:latest
+        restart: unless-stopped
+        hostname: rabbit
+        ports:
+            - 15672:15672
+            - 5672:5672
+        environment:
+            RABBITMQ_DEFAULT_VHOST: "/"
+            RABBITMQ_DEFAULT_USER: "guest"
+            RABBITMQ_DEFAULT_PASS: "guest"
